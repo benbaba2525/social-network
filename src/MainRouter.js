@@ -6,8 +6,10 @@ import Signup from "./user/Signup"
 const MainRouter = () => (
   <div>
      <Switch>
-        <Route path="/" component={Home}></Route>
-        <Route path="/signup" component={Signup}></Route>
+        
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={Signup} />
+        
      </Switch>
 
   </div>
