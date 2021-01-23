@@ -11,6 +11,7 @@ class Signup extends Component {
         }
     }
     handleChange = (name) => (event) =>{
+        this.setState({error: ""});
         this.setState({[name]: event.target.value})
     };
 
@@ -22,7 +23,22 @@ class Signup extends Component {
             email,
             password
         };
-        fetch("http://localhost:8080/signup",{
+
+        this.signup(user).then(data => {
+        
+            if (data.error) this.setState({error: data.error})
+               else 
+               this.setState({
+                   name : "",
+                   email : "",
+                   password : "",
+                   error : "",
+               })
+        })
+    };
+
+    signup = user => {
+        return fetch("http://localhost:8080/signup",{
             method: "POST",
             header: {
                 Accept : "application/json",
@@ -34,7 +50,7 @@ class Signup extends Component {
             return response.json()
         })
         .catch(err => console.log(err))
-    };
+    }
 
 
 
