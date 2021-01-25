@@ -1,12 +1,19 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const morgan = require('morgan')
 
-app.get("/", (req, res) =>{
-    res.send("Hello social app server")
-});
+//import from routes
+const { getPosts } = require('./routes/post');
+
+
+
+//Middleware
+app.use(morgan('dev'));
+
+app.get("/", getPosts);
 
 const port = 8080
 
 app.listen(port, () => {
     console.log(`Server is 🌏 listening on port : ${port}`
-)})
+)});
