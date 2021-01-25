@@ -3,14 +3,14 @@ const app = express();
 const morgan = require('morgan')
 
 //import from routes
-const { getPosts } = require('./routes/post');
+const postRoutes = require('./routes/post');
 
 
 
 //Middleware
 app.use(morgan('dev'));
 
-app.get("/", getPosts);
+app.use("/", postRoutes);
 
 const port = 8080
 
