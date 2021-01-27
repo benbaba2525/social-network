@@ -1,4 +1,9 @@
 exports.getPosts = (req, res) =>{
-    res.send("Hello social app server")
+    res.json({
+        posts : [
+            {title: "First"},
+            {title: "Second"}
+        ]
+    })
 }
 
