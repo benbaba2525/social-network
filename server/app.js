@@ -11,7 +11,7 @@ mongoose.connect(config.mongoUri, { useNewUrlParser: true, useCreateIndex: true,
 .then(()=> console.log('DB Connected!!'))
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${config.mongoUri}`)
-})
+});
 
 //import from routes
 const postRoutes = require('./routes/post');
