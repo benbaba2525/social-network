@@ -1,15 +1,15 @@
 const Post = require('../models/post')
 
 
+exports.getPosts = (req, res) => {
 
-exports.getPosts = (req, res) =>{
-    res.json({
-        posts : [
-            {title: "First"},
-            {title: "Second"}
-        ]
+    const posts = Post.find()
+    .then((posts)=>{
+        res.json({posts});
     })
-}
+    .catch(err => console.log(err));
+};
+
 
 exports.createPost = (req, res) => {
     const post = new Post(req.body)
