@@ -17,6 +17,7 @@ mongoose.connection.on('error', () => {
 
 //import from routes
 const postRoutes = require('./routes/post');
+const authRoutes = require('./routes/auth');
 
 
 
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 
 app.use("/", postRoutes);
+app.use("/", authRoutes);
 
 const port = 8080
 
