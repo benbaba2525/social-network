@@ -47,6 +47,8 @@ userSchema.methods = {
             return crypto.createHmac('sha1', this.salt)
                    .update(password)
                    .digest('hex');
+        } catch (err){
+            return ""
         }
     }
 }
