@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const User = require('../models/user');
+const config = require('../config/config');
 
 
 
@@ -33,17 +34,19 @@ exports.signin = (req, res) => {
                 error: "Email or Password do not match. Please try again"
             })
         }
-       // Generate a token with user ID and secret
-             const token = jwt.sign({_id: user._id}, process.env.JWT_SECERT);
-       //Persist the token as "t" in cookie with expire date
-             res.cookie("t", token, {expire: new Date( + 9999)})
-       //Return response with user and token to frontend client
-             const {_id, name, email} = user 
-             return res.json({token, user: {_id, email, name}});
-    })
-   
-
-   
+        const token = jwt.sign({
+            _id: user._id
+          }, config.jwtSecret)
+      
+          res.cookie("t", token, {
+            expire: new Date() + 9999
+          })
+      
+          return res.json({
+            token,
+            user: { _id: user._id, name: user.name, email: user.email }
+          })
+        })
 
    
 } ;
